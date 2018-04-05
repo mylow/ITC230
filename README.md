@@ -1,3 +1,4 @@
+<<<<<<< HEAD
          ___        ______     ____ _                 _  ___  
         / \ \      / / ___|   / ___| | ___  _   _  __| |/ _ \ 
        / _ \ \ /\ / /\___ \  | |   | |/ _ \| | | |/ _` | (_) |
@@ -13,3 +14,7 @@ or visit https://docs.aws.amazon.com/console/cloud9/ for our documentation.
 
 Happy coding!
 
+=======
+# ITC230
+itc230 advanced javascript
+>>>>>>> 7d7fd75cde0e0f6ffae8d22ca46c9d4eebf53d84
