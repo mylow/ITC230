@@ -1,0 +1,19 @@
+{
+  "name": "mylow-230-pkg",
+  "version": "1.0.0",
+  "description": "my first json package. as for now being used in my JavaScript class (230)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mylow/ITC230.git"
+  },
+  "author": "milo <miiloe@ya.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mylow/ITC230/issues"
+  },
+  "homepage": "https://github.com/mylow/ITC230#readme"
+}
