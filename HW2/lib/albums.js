@@ -2,19 +2,19 @@
 
 let albums = [
     {   title: "waste", 
-        author:"barren", 
+        artist:"barren", 
         release:2017 },
     
     {   title: "syre", 
-        author:"Jaden Smith", 
+        artist:"Jaden Smith", 
         release:2017},
     
     {   title: "unrendered", 
-        author:"Bones", 
+        artist:"Bones", 
         release:2017},
     
     {   title: "tiger", 
-        author:"Thaiboy Digital", 
+        artist:"Thaiboy Digital", 
         release:2014},
 ];
 
