@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Details for {{title}}</h2>
+  {{#if result}}
+    <li>Title: {{ result.title }}
+    <li>Artist: {{ result.artist }}
+    <li>Release Date: {{ result.release }}
+  {{else}}
+    Album not found.
+  {{/if}}
+</body>
+</html> 
