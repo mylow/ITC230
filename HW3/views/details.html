@@ -6,8 +6,11 @@
     <li>Title: {{ result.title }}
     <li>Artist: {{ result.artist }}
     <li>Release Date: {{ result.release }}
+    <p>
+      <a href="/delete?title={{result.title}}">Delete</a>
+    </p>
   {{else}}
-    Album not found.
+    <h1>{{title}} not found.</h1>
   {{/if}}
 </body>
 </html> 

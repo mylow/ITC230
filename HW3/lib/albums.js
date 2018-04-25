@@ -18,6 +18,10 @@ let albums = [
         release:2014},
 ];
 
+exports.getAll = () => {
+    return albums;
+};
+
 exports.get = (title) => {
     return albums.find((item) => {
         return item.title === title;
