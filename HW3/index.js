@@ -20,23 +20,22 @@ app.get('/', function(req, res){
 
 app.get('/about', function(req,res){
     res.type('text/plain');
-    res.send('About page');
+    res.send("About Page");
 });
 
-// handle GET 
 app.get('/delete', function(req,res){
-    let result = album.delete(req.query.title); // delete book object
+    let result = album.delete(req.query.title);
     res.render('delete', {title: req.query.title, result: result});
 });
 
-// handle POST
 app.post('/get', function(req,res){
-    console.log(req.body)
+    console.log('get posted');
+    console.log(req.body);
     var found = album.get(req.body.title);
+    
     res.render("details", {title: req.body.title, result: found});
 });
 
-// define 404 handler
 app.use(function(req,res) {
     res.type('text/plain'); 
     res.status(404);

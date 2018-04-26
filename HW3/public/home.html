@@ -5,14 +5,11 @@
     <main>
         <h1>This is my home page</h1>
         <form action="/get" method="POST">
-            <input type="text" 
+            <input type="text"
+                   name="title"
                    required="required" 
-                   class="search-bar" 
                    maxlength="99"
-                   title="search album"
-                   placeholder="search album"
-                   onfocus="this.placeholder = ''"
-                   onblur="this.placeholder = 'search album'" />       
+                   placeholder="search album"/>
             <button>Search</button>
         </form>
 
