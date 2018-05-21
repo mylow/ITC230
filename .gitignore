@@ -1,3 +1,4 @@
 /.c9/
 node_modules
-/lib/
+/lib/credentials.js
+credentials.js
