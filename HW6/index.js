@@ -13,16 +13,9 @@ app.engine(".html", handlebars({extname: '.html'}));
 app.set("view engine", ".html");
 
 app.get('/', (req, res, next) => {
-    Album.find((err,albums) => {
-        if (err) return next(err); 
-        res.render('home', {albums: albums}); 
-    });
-});
-
-app.get('/', (req, res, next) => {
-    Album.find((err,albums) => {
-        if (err) return next(err); 
-        res.render('home', {albums: albums}); 
+    Album.find((err,AlbumSchema) => {
+        if(err) return next(err); 
+        res.render('home',{Album:JSON.stringify(Album)}); 
     });
 });
 
@@ -31,31 +24,37 @@ app.get('/about', (req,res) => {
     res.render('about'); 
 }); 
 
-app.get('/get', (req,res, next) => {
-   Album.findOne ({ title:req.query.title }, (err, album) => {
-       if (err) return next(err); 
-       res.type('text/html');
-       res.render('details', {result: album}); 
-   });  
+app.get('/api/album/', (req, res) => {
+Album.find({}, (err, album) => {
+   if (err) return (err);
+   res.json(album);
+  
+ });
 });
 
-app.post('/get', (req, res, next) => {
-   Album.findOne ({ title:req.body.title }, (err, album) => {
-       if (err) return next(err); 
-       res.type('text/html');
-       res.render('details', {result: album}); 
-   });  
+app.post('/get', (req,res) => {
+   Album.find({title:req.body.title}, (err, album) => {
+   if (err) return (err);
+     res.type('text/html');
+     res.render('details', {title:req.body.title,album}); 
+ });
 });
 
-app.get('/delete', (req, res, next) => {
-   Album.remove ({title: req.query.title }, (err, result) => {
-        if (err) return next (err); 
-       let deleted = result.result.n !== 0; 
-       Album.count((err, total) => {
-            res.type('text/html'); 
-            res.render('delete', {title: req.query.title, deleted: result.result.n !== 0, total: total} );
-       });
-   }); 
+app.get('/api/album/:title', (req,res,next) => {
+  Album.findOne({title:req.params.title.toLowerCase()}, (err, album) => {
+   if (err) return next(err);
+   res.json(album);
+ });
+});
+
+
+
+app.get('/api/delete/:title', (req,res,next) => { 
+Album.remove({title:req.params.title.toLowerCase()}, (err, title) => {
+   if (err) return next(err);
+   res.json(title);
+ 
+});
 });
 
 
