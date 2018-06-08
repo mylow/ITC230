@@ -7,7 +7,42 @@
     </head>
     <style type="text/css">
         .albumMain {
-        color:blue;
+            max-width:500px;
+            margin:0 auto;
+            padding:10px;
+            border:1px solid black;
+        }
+        .albumList {
+            text-align:center;
+            font-size:40px;
+            margin:5px;
+        }
+        .albumList h2 {
+            margin:0;
+        }
+        .albumMain ul {
+            list-style:none;
+            font-size:24px;
+            padding-left:0;
+            text-align:center;
+        }
+        .albumMain ul li {
+            padding-bottom:10px;
+        }
+        .albumMain ul li:hover {
+            text-decoration:underline;
+            cursor:pointer;
+        }
+        .albumDetails form input {
+            display:block;
+            font-size:24px;
+            margin: 0 auto;
+            text-align:center;
+        }
+        .albumDetails form p {
+            text-align: left;
+            width: 295px;
+            margin: 0 auto;
         }
     </style>
     <body>
@@ -85,12 +120,13 @@ items: [{
     const CurrentItemDetails = (props) => {
         return (
             <span className="albumDetails">
-            <h3>Album details:</h3>
+            
             <form>
-            <input type="text" name="id" placeholder="ID" value={props.item.id || ""}/>
-            <input type="text" name="title" placeholder="title" value={props.item.title || ""}/>
-            <input type="text" name="release" placeholder="release" value={props.item.release || ""}/>
-            <input type="text" name="artist" placeholder="artist" value={props.item.artist || ""}/>
+            <p>id</p><input type="text" name="id" placeholder="ID" disabled="disabled" value={props.item.id || ""}/>
+            <p>artist</p><input type="text" name="artist" placeholder="artist" disabled="disabled" value={props.item.artist || ""}/>
+            <p>album title</p><input type="text" name="title" placeholder="album title" disabled="disabled" value={props.item.title || ""}/>
+            <p>release</p><input type="text" name="release" placeholder="release" disabled="disabled" value={props.item.release || ""}/>
+            
             </form>
             </span>
             );
