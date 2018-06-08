@@ -13,7 +13,7 @@ app.engine(".html", handlebars({extname: '.html'}));
 app.set("view engine", ".html");
 
 app.get('/', (req, res, next) => {
-    Album.find((err,AlbumSchema) => {
+    Album.find((err,albumSchema) => {
         if(err) return next(err); 
         res.render('home',{Album:JSON.stringify(Album)}); 
     });

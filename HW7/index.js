@@ -19,7 +19,7 @@ app.get('/', (req, res, next) => {
     });
 });
 
-app.get('/', (req, res, next) => {
+app.get('/home', (req, res, next) => {
     Album.find((err,albums) => {
         if (err) return next(err); 
         res.render('home', {albums: albums}); 
@@ -31,31 +31,28 @@ app.get('/about', (req,res) => {
     res.render('about'); 
 }); 
 
-app.get('/get', (req,res, next) => {
-   Album.findOne ({ title:req.query.title }, (err, album) => {
-       if (err) return next(err); 
-       res.type('text/html');
-       res.render('details', {result: album}); 
-   });  
+app.get('/api/v1/book/:title', (req, res, next) => {
+    let title = req.params.title;
+    console.log(title);
+    Album.findOne({title: title}, (err, result) => {
+        if (err || !result) return next(err);
+        res.json( result );    
+    });
 });
 
-app.post('/get', (req, res, next) => {
-   Album.findOne ({ title:req.body.title }, (err, album) => {
-       if (err) return next(err); 
-       res.type('text/html');
-       res.render('details', {result: album}); 
-   });  
+app.get('/api/v1/books', (req,res, next) => {
+    Album.find((err,results) => {
+        if (err || !results) return next(err);
+        res.json(results);
+    });
 });
 
-app.get('/delete', (req, res, next) => {
-   Album.remove ({title: req.query.title }, (err, result) => {
-        if (err) return next (err); 
-       let deleted = result.result.n !== 0; 
-       Album.count((err, total) => {
-            res.type('text/html'); 
-            res.render('delete', {title: req.query.title, deleted: result.result.n !== 0, total: total} );
-       });
-   }); 
+app.get('/api/v1/delete/:id', (req,res, next) => {
+    Album.remove({"_id":req.params.id }, (err, result) => {
+        if (err) return next(err);
+        // return # of items deleted
+        res.json({"deleted": result.result.n});
+    });
 });
 
 

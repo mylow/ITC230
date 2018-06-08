@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <h2>Details for {{title}}</h2>
+  
   {{#if result}}
+  <h2>Details for {{title}}</h2>
     <li>Title: {{ result.title }}
     <li>Artist: {{ result.artist }}
     <li>Release Date: {{ result.release }}
@@ -14,7 +15,8 @@
     </p>
 </form>
   {{else}}
-    <h1>{{title}} not found.</h1>
+    <h1>Album: {{title}}</h1>
+    <h1>not found</h1>
     <a href="/">Back</a>
   {{/if}}
 </body>

@@ -1,17 +1,109 @@
 <html>
     <head>
-        <title>home</title>
+        <title>Albums</title>
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     </head>
-    <main>
-        <h1>This is my home page</h1>
-        <form action="/get" method="POST">
-            <input type="text"
-                   name="title"
-                   required="required" 
-                   maxlength="99"
-                   placeholder="search album"/>
-            <button>Search</button>
-        </form>
+    <style type="text/css">
+        .albumMain {
+        color:blue;
+        }
+    </style>
+    <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    
+        class MyAlbumApp extends React.Component {
+      constructor(props){
+        super(props);
 
-    </main>
+        this.state = {
+items: [{
+        "_id": "5af0fb6a734d1d5358b9ff93",
+        "id":2,
+        "title":"syre",
+        "release":2017,
+        "artist": "Jaden Smith"
+        },
+    {
+        "_id": "5af0fb85734d1d5358b9ff95",
+        "id":3,
+        "title":"unrendered",
+        "release":2017,
+        "artist": "Bones"
+        }, 
+    {
+        "_id": "5af39567734d1d64dbec6973",
+        "id":4,
+        "title":"tiger",
+        "release":2014,
+        "artist":"Thaiboy Digital"
+        },
+    {
+        "_id": "5af395a0734d1d64dbec6983",
+        "id":5,
+        "title": "waste",
+        "release":2017,
+        "artist": "Barren"
+    }],
+        currentItem: {}
+        };
+      }
+        showDetails(event){
+            let editItem = this.state.items.find((item) =>{
+                return item._id === event.target.id;
+            });
+             this.setState({currentItem: editItem});
+        }
+        
+      render() {
+        return (
+          <div className="albumMain">
+          <Title title="Albums" />
+          <ItemList items={this.state.items} show={this.showDetails.bind(this)}/>
+          <CurrentItemDetails item={this.state.currentItem}/>
+          </div>
+        );
+      }
+          
+    }
+
+    // UI elements
+    
+    const Title = ({title}) => {
+      return <div className="albumList"><h2>{title}</h2></div>;
+    }
+    
+    const ItemList = ({items,  show}) => {
+      const itemNodes = items.map((item) => {
+          return <li id={item._id} key={item._id} onClick={show}>{item.title}</li>
+      });
+      return <ul>{itemNodes}</ul>;
+    }
+    
+    const CurrentItemDetails = (props) => {
+        return (
+            <span className="albumDetails">
+            <h3>Album details:</h3>
+            <form>
+            <input type="text" name="id" placeholder="ID" value={props.item.id || ""}/>
+            <input type="text" name="title" placeholder="title" value={props.item.title || ""}/>
+            <input type="text" name="release" placeholder="release" value={props.item.release || ""}/>
+            <input type="text" name="artist" placeholder="artist" value={props.item.artist || ""}/>
+            </form>
+            </span>
+            );
+        }
+    
+    
+    
+
+    
+    ReactDOM.render(<MyAlbumApp />, document.getElementById('root'));
+
+        
+        
+    </script>
+    </body>
 </html>
