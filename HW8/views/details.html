@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+  
+  {{#if result}}
+  <h2>Details for {{title}}</h2>
+    <li>Title: {{ result.title }}
+    <li>Artist: {{ result.artist }}
+    <li>Release Date: {{ result.release }}
+    <p>
+      <a href="/delete?title={{result.title}}">Delete</a>
+    </p>
+    <p>
+      <a href="/">Back</a>
+    </p>
+</form>
+  {{else}}
+    <h1>Album: {{title}}</h1>
+    <h1>not found</h1>
+    <a href="/">Back</a>
+  {{/if}}
+</body>
+</html> 

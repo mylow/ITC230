@@ -1,0 +1,159 @@
+<html>
+    <head>
+        <title>Albums</title>
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    </head>
+    <style type="text/css">
+        .albumMain {
+            max-width:500px;
+            margin:0 auto;
+            padding:10px;
+            border:1px solid black;
+        }
+        .albumList {
+            text-align:center;
+            font-size:40px;
+            margin:5px;
+        }
+        .albumList h2 {
+            margin:0;
+        }
+        .albumMain ul {
+            list-style:none;
+            font-size:24px;
+            padding-left:0;
+            text-align:center;
+        }
+        .albumMain ul li {
+            padding-bottom:10px;
+        }
+        .albumMain ul li:hover {
+            text-decoration:underline;
+            cursor:pointer;
+        }
+        .albumDetails form input {
+            display:block;
+            font-size:24px;
+            margin: 0 auto;
+            text-align:center;
+        }
+        .albumDetails form p {
+            text-align: left;
+            width: 295px;
+            margin: 0 auto;
+        }
+        .buttons {
+            max-width:296px;
+            padding-top:25px;
+            display:block;
+            margin:0 auto;
+        }
+        button{
+            width:33%;
+            font-size:20px;
+        }
+    </style>
+    <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    
+        class MyAlbumApp extends React.Component {
+      constructor(props){
+        super(props);
+
+        this.state = {
+items: [{
+        "_id": "5af0fb6a734d1d5358b9ff93",
+        "id":2,
+        "title":"syre",
+        "release":2017,
+        "artist": "Jaden Smith"
+        },
+    {
+        "_id": "5af0fb85734d1d5358b9ff95",
+        "id":3,
+        "title":"unrendered",
+        "release":2017,
+        "artist": "Bones"
+        }, 
+    {
+        "_id": "5af39567734d1d64dbec6973",
+        "id":4,
+        "title":"tiger",
+        "release":2014,
+        "artist":"Thaiboy Digital"
+        },
+    {
+        "_id": "5af395a0734d1d64dbec6983",
+        "id":5,
+        "title": "waste",
+        "release":2017,
+        "artist": "Barren"
+    }],
+        currentItem: {}
+        };
+      }
+        showDetails(event){
+            let editItem = this.state.items.find((item) =>{
+                return item._id === event.target.id;
+            });
+             this.setState({currentItem: editItem});
+        }
+        
+      render() {
+        return (
+          <div className="albumMain">
+          <Title title="Albums" />
+          <ItemList items={this.state.items} show={this.showDetails.bind(this)}/>
+          <CurrentItemDetails item={this.state.currentItem}/>
+          </div>
+        );
+      }
+          
+    }
+
+    // UI elements
+    
+    const Title = ({title}) => {
+      return <div className="albumList"><h2>{title}</h2></div>;
+    }
+    
+    const ItemList = ({items,  show}) => {
+      const itemNodes = items.map((item) => {
+          return <li id={item._id} key={item._id} onClick={show}>{item.title}</li>
+      });
+      return <ul>{itemNodes}</ul>;
+    }
+    
+    const CurrentItemDetails = (props) => {
+        return (
+            <span className="albumDetails">
+            
+            <form>
+            <p>id</p><input type="text" name="id" placeholder="ID" value={props.item.id || ""}/>
+            <p>artist</p><input type="text" name="artist" placeholder="artist" value={props.item.artist || ""}/>
+            <p>album title</p><input type="text" name="title" placeholder="album title" value={props.item.title || ""}/>
+            <p>release</p><input type="text" name="release" placeholder="release" value={props.item.release || ""}/>
+            <span className="buttons">
+                <button type="button">Save</button>
+                <button type="button">Delete</button>
+                <button type="button">Clear</button>
+            </span>
+            </form>
+            </span>
+            );
+        }
+    
+    
+    
+
+    
+    ReactDOM.render(<MyAlbumApp />, document.getElementById('root'));
+
+        
+        
+    </script>
+    </body>
+</html>
