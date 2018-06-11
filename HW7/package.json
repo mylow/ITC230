@@ -1,36 +1,32 @@
 {
-  "name": "mylow-230-pkg",
+  "name": "itc230_pkg",
   "version": "1.1.0",
-  "description": "my first json package. as for now being used in my JavaScript class (230)",
+  "description": "ITC230 SCC pkg",
   "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.4"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
   "scripts": {
-    "lint": "eslint **/*.js",
-    "test": "mocha test/**"
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mylow/ITC230.git"
   },
-  "author": "milo <miiloe@ya.ru>",
+  "author": "Milo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mylow/ITC230/issues"
   },
-  "homepage": "https://github.com/mylow/ITC230#readme",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "mongoose": "^5.1.4",
-    "cors": "^2.8.3",
-    "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
-  },
-  "devDependencies": {
-    "eslint":"^3.19.0",
-    "chai": "^4.1.2",
-    "mocha": "^5.2.0"
-  },
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  }
+  "homepage": "https://github.com/mylow/ITC230#readme"
 }
